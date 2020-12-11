@@ -2,14 +2,21 @@ import React, { Component } from 'react';
 import './Signin.scss';
 import InputField from '../fields/InpuField';
 import Button from '../Button';
-import { signInWithGoogle } from '../../config/firebase';
+import { auth, signInWithGoogle } from '../../config/firebase';
 
 class Signin extends Component {
   state = { email: '', password: '' };
 
-  handleSubmit = e => {
+  handleSubmit = async e => {
     e.preventDefault();
-    this.setState({ email: '', password: '' });
+    const { email, password } = this.state;
+
+    try {
+      await auth.signInWithEmailAndPassword(email, password);
+      this.setState({ email: '', password: '' });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   handleChange = e => {
@@ -18,6 +25,7 @@ class Signin extends Component {
   };
 
   render() {
+    console.log(this.state);
     return (
       <div className="sign-in">
         <h2>I already have an account</h2>
