@@ -4,11 +4,13 @@ import './App.css';
 
 import HomePage from './pages/HomePage';
 import ShopPage from './pages/ShopPage';
+import Header from './Header';
 
 class App extends Component {
   render() {
     return (
       <BrowserRouter>
+        <Header />
         <div>
           <Switch>
             <Route path="/" exact component={HomePage} />
