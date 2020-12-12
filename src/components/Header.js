@@ -6,7 +6,6 @@ import { auth } from '../config/firebase';
 import { ReactComponent as Logo } from '../assets/crown.svg';
 import './Header.scss';
 import Cart from './cart/Cart';
-import CardDropdown from './cart/CartDropdown';
 import CartDropdown from './cart/CartDropdown';
 
 const Header = ({ currentUser, hidden }) => (
