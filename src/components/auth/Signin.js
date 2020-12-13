@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Signin.scss';
 import InputField from '../fields/InpuField';
-import Button from '../Button';
+import Button from '../buttons/Button';
 import { auth, signInWithGoogle } from '../../config/firebase';
 
 class Signin extends Component {
@@ -25,7 +25,6 @@ class Signin extends Component {
   };
 
   render() {
-    console.log(this.state);
     return (
       <div className="sign-in">
         <h2>I already have an account</h2>

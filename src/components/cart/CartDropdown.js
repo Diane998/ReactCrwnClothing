@@ -5,7 +5,7 @@ import { createStructuredSelector } from 'reselect';
 import { selectCartItems } from '../../redux/selectors/cartSelectors';
 import { toggleCartVisibility } from '../../redux/actions';
 
-import Button from '../Button';
+import Button from '../buttons/Button';
 import './CartDropdown.scss';
 import CartItem from './CartItem';
 
