@@ -1,4 +1,5 @@
 import { createStore, applyMiddleware, compose } from 'redux';
+import { persistStore } from 'redux-persist';
 import rootReducer from './reducers';
 
 const composeEnhancers =
@@ -8,5 +9,6 @@ const composeEnhancers =
 
 const enhancer = composeEnhancers(applyMiddleware());
 const store = createStore(rootReducer, enhancer);
+const persistor = persistStore(store);
 
-export default store;
+export { store, persistor };

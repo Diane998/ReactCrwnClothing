@@ -11,7 +11,7 @@ import './App.css';
 import HomePage from './pages/HomePage';
 import ShopPage from './pages/ShopPage';
 import Header from './Header';
-import { selectCurrentUser } from '../redux/userSelector';
+import { selectCurrentUser } from '../redux/selectors/userSelector';
 import CheckoutPage from './pages/CheckoutPage';
 
 class App extends Component {
@@ -43,7 +43,7 @@ class App extends Component {
         <div>
           <Switch>
             <Route path="/" exact component={HomePage} />
-            <Route path="/shop" exact component={ShopPage} />
+            <Route path="/shop" component={ShopPage} />
             <Route
               path="/authentication"
               exact
