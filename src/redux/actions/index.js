@@ -3,7 +3,8 @@ import {
   TOGGLE_CART_VISIBILITY,
   ADD_ITEM,
   CLEAR_ITEM_FROM_CART,
-  REMOVE_ITEM
+  REMOVE_ITEM,
+  UPDATE_COLLECTIONS
 } from './types';
 
 export const setCurrentUser = user => ({
@@ -28,4 +29,9 @@ export const clearItemFromCart = item => ({
 export const removeItem = item => ({
   type: REMOVE_ITEM,
   payload: item
+});
+
+export const updateCollections = collectionsMap => ({
+  type: UPDATE_COLLECTIONS,
+  payload: collectionsMap
 });

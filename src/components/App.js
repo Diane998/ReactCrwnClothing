@@ -16,19 +16,21 @@ import CheckoutPage from './pages/CheckoutPage';
 
 class App extends Component {
   componentDidMount() {
+    const { setCurrentUser } = this.props;
+
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
       if (userAuth) {
         const userRef = await createUserProfile(userAuth);
 
         userRef.onSnapshot(snapshot => {
-          this.props.setCurrentUser({
+          setCurrentUser({
             id: snapshot.id,
             ...snapshot.data()
           });
         });
-      } else {
-        this.props.setCurrentUser(null);
       }
+
+      setCurrentUser(null);
     });
   }
 
