@@ -1,14 +1,21 @@
 import React from 'react';
-import './Authentication.scss';
+import styled from 'styled-components';
 import Signin from '../auth/Signin';
 import Signup from '../auth/Signup';
 
+const AuthenticationPageContainer = styled.div`
+  width: 850px;
+  display: flex;
+  justify-content: space-between;
+  margin: 30px auto;
+`;
+
 const AuthenticationPage = () => {
   return (
-    <div className="sign-in-and-sign-up">
+    <AuthenticationPageContainer>
       <Signin />
       <Signup />
-    </div>
+    </AuthenticationPageContainer>
   );
 };
 

@@ -1,8 +1,23 @@
 import React, { Component } from 'react';
-import './Signin.scss';
+import styled from 'styled-components';
 import InputField from '../fields/InpuField';
 import Button from '../buttons/Button';
 import { auth, signInWithGoogle } from '../../config/firebase';
+
+const SigninContainer = styled.div`
+  width: 380px;
+  display: flex;
+  flex-direction: column;
+`;
+
+const Title = styled.h2`
+  margin: 10px 0;
+`;
+
+const Buttons = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
 
 class Signin extends Component {
   state = { email: '', password: '' };
@@ -26,8 +41,8 @@ class Signin extends Component {
 
   render() {
     return (
-      <div className="sign-in">
-        <h2>I already have an account</h2>
+      <SigninContainer>
+        <Title>I already have an account</Title>
         <span>Sign in with your email and password</span>
         <form onSubmit={this.handleSubmit}>
           <InputField
@@ -46,14 +61,14 @@ class Signin extends Component {
             value={this.state.password}
             required
           />
-          <div className="buttons">
+          <Buttons>
             <Button type="submit">SIGN IN</Button>
             <Button onClick={signInWithGoogle} isSignedinGoogle>
               SIGN IN WITH GOOGLE
             </Button>
-          </div>
+          </Buttons>
         </form>
-      </div>
+      </SigninContainer>
     );
   }
 }

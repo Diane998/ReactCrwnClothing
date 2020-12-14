@@ -5,37 +5,58 @@ import { auth } from '../config/firebase';
 import { createStructuredSelector } from 'reselect';
 import { selectCartVisibility } from '../redux/selectors/cartSelectors';
 import { selectCurrentUser } from '../redux/selectors/userSelector';
+import styled from 'styled-components';
 
 import { ReactComponent as Logo } from '../assets/crown.svg';
-import './Header.scss';
 import Cart from './cart/Cart';
 import CartDropdown from './cart/CartDropdown';
 
+const HeaderContainer = styled.div`
+  height: 70px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 25px;
+`;
+
+const LinkLogo = styled(Link)`
+  height: 100%;
+  width: 70px;
+  padding: 25px;
+`;
+
+const Options = styled.div`
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+`;
+
+const OptionLink = styled(Link)`
+  padding: 10px 15px;
+  cursor: pointer;
+`;
+
 const Header = ({ currentUser, hidden }) => (
-  <div className="header">
-    <Link className="logo-container" to="/">
-      <Logo className="logo" />
-    </Link>
-    <div className="options">
-      <Link className="option" to="/shop">
-        SHOP
-      </Link>
-      <Link className="option" to="/contact">
-        CONTACT
-      </Link>
+  <HeaderContainer>
+    <LinkLogo to="/">
+      <Logo />
+    </LinkLogo>
+    <Options>
+      <OptionLink to="/shop">SHOP</OptionLink>
+      <OptionLink to="/contact">CONTACT</OptionLink>
       {currentUser ? (
-        <div className="option" onClick={() => auth.signOut()}>
+        <OptionLink as="div" onClick={() => auth.signOut()}>
           SIGN OUT
-        </div>
+        </OptionLink>
       ) : (
-        <Link className="option" to="/authentication">
-          SIGN IN
-        </Link>
+        <OptionLink to="/authentication">SIGN IN</OptionLink>
       )}
       <Cart />
-    </div>
+    </Options>
     {hidden ? null : <CartDropdown />}
-  </div>
+  </HeaderContainer>
 );
 
 const mapStateToProps = createStructuredSelector({
