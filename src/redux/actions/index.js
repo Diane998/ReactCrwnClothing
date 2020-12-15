@@ -4,8 +4,15 @@ import {
   ADD_ITEM,
   CLEAR_ITEM_FROM_CART,
   REMOVE_ITEM,
-  UPDATE_COLLECTIONS
+  FETCH_COLLECTIONS_START,
+  FETCH_COLLECTIONS_SUCCESS,
+  FETCH_COLLECTIONS_FAILURE
 } from './types';
+
+import {
+  firestore,
+  convertCollectionsSnapshotToMap
+} from '../../config/firebase';
 
 export const setCurrentUser = user => ({
   type: SET_CURRENT_USER,
@@ -31,7 +38,17 @@ export const removeItem = item => ({
   payload: item
 });
 
-export const updateCollections = collectionsMap => ({
-  type: UPDATE_COLLECTIONS,
-  payload: collectionsMap
-});
+export const fetchCollections = () => dispatch => {
+  const collectionRef = firestore.collection('collections');
+  dispatch({ type: FETCH_COLLECTIONS_START });
+
+  collectionRef
+    .get()
+    .then(snapshot => {
+      const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
+      dispatch({ type: FETCH_COLLECTIONS_SUCCESS, payload: collectionsMap });
+    })
+    .catch(err => {
+      dispatch({ type: FETCH_COLLECTIONS_FAILURE, payload: err });
+    });
+};
