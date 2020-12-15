@@ -1,7 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { selectCollection } from '../../../redux/selectors/shopSelector';
-import CollectionItem from '../../collections/CollectionItem';
+import CollectionItemContainer from '../../containers/CollectionItemContainer';
 import styled from 'styled-components';
 
 const CollectionPageContainer = styled.div`
@@ -31,15 +29,11 @@ const CollectionPage = ({ collection }) => {
       <Title>{title}</Title>
       <Items>
         {items.map(item => (
-          <CollectionItem key={item.id} item={item} />
+          <CollectionItemContainer key={item.id} item={item} />
         ))}
       </Items>
     </CollectionPageContainer>
   );
 };
 
-const mapStateToProps = (state, ownProps) => ({
-  collection: selectCollection(ownProps.match.params.collectionId)(state)
-});
-
-export default connect(mapStateToProps)(CollectionPage);
+export default CollectionPage;

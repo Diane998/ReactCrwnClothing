@@ -1,6 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { addItem } from '../../redux/actions';
 import styled from 'styled-components';
 import Button from '../buttons/Button';
 
@@ -77,4 +75,4 @@ const CollectionItem = ({ item, addItem }) => {
   );
 };
 
-export default connect(null, { addItem })(CollectionItem);
+export default CollectionItem;

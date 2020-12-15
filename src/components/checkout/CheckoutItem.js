@@ -1,6 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { clearItemFromCart, addItem, removeItem } from '../../redux/actions';
 import styled from 'styled-components';
 
 const CheckoutItemContainer = styled.div`
@@ -79,6 +77,4 @@ const CheckoutItem = ({ cartItem, clearItemFromCart, addItem, removeItem }) => {
   );
 };
 
-export default connect(null, { clearItemFromCart, addItem, removeItem })(
-  CheckoutItem
-);
+export default CheckoutItem;

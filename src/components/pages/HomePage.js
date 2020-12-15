@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Directory from '../Directory';
+import DirectoryContainer from '../../containers/DirectoryContainer';
 
 const HomePageContainer = styled.div`
   display: flex;
@@ -11,7 +11,7 @@ const HomePageContainer = styled.div`
 
 const HomePage = () => (
   <HomePageContainer>
-    <Directory />
+    <DirectoryContainer />
   </HomePageContainer>
 );
 

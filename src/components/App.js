@@ -1,18 +1,14 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { setCurrentUser } from '../redux/actions';
-import { createStructuredSelector } from 'reselect';
 
 import AuthenticationPage from './pages/AuthenticationPage';
 import { auth, createUserProfile } from '../config/firebase';
 
 import './App.css';
 import HomePage from './pages/HomePage';
-import ShopPage from './pages/ShopPage';
-import Header from './Header';
-import { selectCurrentUser } from '../redux/selectors/userSelector';
-import CheckoutPage from './pages/CheckoutPage';
+import ShopPageContainer from '../containers/ShopPageContainer';
+import HeaderContainer from '../containers/HeaderContainer';
+import CheckoutPageContainer from '../containers/CheckoutPageContainer';
 
 class App extends Component {
   componentDidMount() {
@@ -41,11 +37,11 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <Header />
+        <HeaderContainer />
         <div>
           <Switch>
             <Route path="/" exact component={HomePage} />
-            <Route path="/shop" component={ShopPage} />
+            <Route path="/shop" component={ShopPageContainer} />
             <Route
               path="/authentication"
               exact
@@ -57,7 +53,7 @@ class App extends Component {
                 )
               }
             />
-            <Route path="/checkout" exact component={CheckoutPage} />
+            <Route path="/checkout" exact component={CheckoutPageContainer} />
           </Switch>
         </div>
       </BrowserRouter>
@@ -65,8 +61,4 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = createStructuredSelector({
-  currentUser: selectCurrentUser
-});
-
-export default connect(mapStateToProps, { setCurrentUser })(App);
+export default App;

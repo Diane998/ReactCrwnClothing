@@ -1,58 +1,31 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
-import { fetchCollections } from '../../redux/actions';
-import {
-  selectIsCollectionFetching,
-  selectIsCollectionLoaded
-} from '../../redux/selectors/shopSelector';
-import { createStructuredSelector } from 'reselect';
 
-import CollectionsOverview from '../collections/CollectionsOverview';
-import CollectionPage from './collection/CollectionPage';
-import Spinner from '../spinner/Spinner';
-
-const CollectionsOverviewWithSpinner = Spinner(CollectionsOverview);
-const CollectionPageWithSpinner = Spinner(CollectionPage);
+import CollectionOverviewContainer from '../../containers/CollectionsOverviewContainer';
+import CollectionPageContainer from '../../containers/CollectionsPageContainer';
 
 class ShopPage extends Component {
   componentDidMount() {
-    const { fetchCollections } = this.props;
-    fetchCollections();
+    this.props.fetchCollections();
   }
 
   render() {
-    const { match, isCollectionFetching } = this.props;
+    const { match } = this.props;
 
     return (
       <div className="shop-page">
         <Route
           path={`${match.path}`}
           exact
-          render={props => (
-            <CollectionsOverviewWithSpinner
-              isLoading={isCollectionFetching}
-              {...props}
-            />
-          )}
+          component={CollectionOverviewContainer}
         />
         <Route
           path={`${match.path}/:collectionId`}
-          render={props => (
-            <CollectionPageWithSpinner
-              isLoading={!selectIsCollectionLoaded}
-              {...props}
-            />
-          )}
+          component={CollectionPageContainer}
         />
       </div>
     );
   }
 }
 
-const mapStateToProps = createStructuredSelector({
-  isCollectionFetching: selectIsCollectionFetching,
-  isCollectionLoaded: selectIsCollectionLoaded
-});
-
-export default connect(mapStateToProps, { fetchCollections })(ShopPage);
+export default ShopPage;
