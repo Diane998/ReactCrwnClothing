@@ -38,17 +38,15 @@ export const removeItem = item => ({
   payload: item
 });
 
-export const fetchCollections = () => dispatch => {
+export const fetchCollections = () => async dispatch => {
   const collectionRef = firestore.collection('collections');
   dispatch({ type: FETCH_COLLECTIONS_START });
 
-  collectionRef
-    .get()
-    .then(snapshot => {
-      const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
-      dispatch({ type: FETCH_COLLECTIONS_SUCCESS, payload: collectionsMap });
-    })
-    .catch(err => {
-      dispatch({ type: FETCH_COLLECTIONS_FAILURE, payload: err });
-    });
+  try {
+    const res = await collectionRef.get();
+    const collectionsMap = convertCollectionsSnapshotToMap(res);
+    dispatch({ type: FETCH_COLLECTIONS_SUCCESS, payload: collectionsMap });
+  } catch (err) {
+    dispatch({ type: FETCH_COLLECTIONS_FAILURE, payload: err });
+  }
 };
