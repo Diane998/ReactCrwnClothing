@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
 import styled from 'styled-components';
 import InputField from '../fields/InpuField';
@@ -19,55 +19,54 @@ const Buttons = styled.div`
   justify-content: space-between;
 `;
 
-class Signin extends Component {
-  state = { email: '', password: '' };
+const Signin = ({ googleSignInStart, emailSignInStart }) => {
+  const [userCredentials, setUserCredentials] = useState({
+    email: '',
+    password: ''
+  });
 
-  handleSubmit = async e => {
+  const { email, password } = userCredentials;
+
+  const handleSubmit = async e => {
     e.preventDefault();
-    const { emailSignInStart } = this.props;
-
-    emailSignInStart(this.state);
+    emailSignInStart({ email, password });
   };
 
-  handleChange = e => {
+  const handleChange = e => {
     const { value, name } = e.target;
-    this.setState({ [name]: value });
+    setUserCredentials({ ...userCredentials, [name]: value });
   };
 
-  render() {
-    const { googleSignInStart } = this.props;
-
-    return (
-      <SigninContainer>
-        <Title>I already have an account</Title>
-        <span>Sign in with your email and password</span>
-        <form onSubmit={this.handleSubmit}>
-          <InputField
-            onChange={this.handleChange}
-            type="email"
-            name="email"
-            label="Email"
-            value={this.state.email}
-            required
-          />
-          <InputField
-            onChange={this.handleChange}
-            type="password"
-            name="password"
-            label="Password"
-            value={this.state.password}
-            required
-          />
-          <Buttons>
-            <Button type="submit">SIGN IN</Button>
-            <Button type="button" onClick={googleSignInStart} isSignedinGoogle>
-              SIGN IN WITH GOOGLE
-            </Button>
-          </Buttons>
-        </form>
-      </SigninContainer>
-    );
-  }
-}
+  return (
+    <SigninContainer>
+      <Title>I already have an account</Title>
+      <span>Sign in with your email and password</span>
+      <form onSubmit={handleSubmit}>
+        <InputField
+          onChange={handleChange}
+          type="email"
+          name="email"
+          label="Email"
+          value={email}
+          required
+        />
+        <InputField
+          onChange={handleChange}
+          type="password"
+          name="password"
+          label="Password"
+          value={password}
+          required
+        />
+        <Buttons>
+          <Button type="submit">SIGN IN</Button>
+          <Button type="button" onClick={googleSignInStart} isSignedinGoogle>
+            SIGN IN WITH GOOGLE
+          </Button>
+        </Buttons>
+      </form>
+    </SigninContainer>
+  );
+};
 
 export default Signin;
