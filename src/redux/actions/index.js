@@ -9,11 +9,6 @@ import {
   FETCH_COLLECTIONS_FAILURE
 } from './types';
 
-import {
-  firestore,
-  convertCollectionsSnapshotToMap
-} from '../../config/firebase';
-
 export const setCurrentUser = user => ({
   type: SET_CURRENT_USER,
   payload: user
@@ -38,19 +33,6 @@ export const removeItem = item => ({
   payload: item
 });
 
-// export const fetchCollections = () => async dispatch => {
-//   const collectionRef = firestore.collection('collections');
-//   dispatch({ type: FETCH_COLLECTIONS_START });
-
-//   try {
-//     const res = await collectionRef.get();
-//     const collectionsMap = convertCollectionsSnapshotToMap(res);
-//     dispatch({ type: FETCH_COLLECTIONS_SUCCESS, payload: collectionsMap });
-//   } catch (err) {
-//     dispatch({ type: FETCH_COLLECTIONS_FAILURE, payload: err });
-//   }
-// };
-
 export const fetchCollectionsStart = () => ({
   type: FETCH_COLLECTIONS_START
 });
@@ -64,16 +46,3 @@ export const fetchCollectionsFailure = errorMessage => ({
   type: FETCH_COLLECTIONS_FAILURE,
   payload: errorMessage
 });
-
-export const fetchCollectionsStartAsync = () => async dispatch => {
-  const collectionRef = firestore.collection('collections');
-  dispatch(fetchCollectionsStart());
-
-  try {
-    const res = await collectionRef.get();
-    const collectionsMap = convertCollectionsSnapshotToMap(res);
-    dispatch(fetchCollectionsSuccess(collectionsMap));
-  } catch (err) {
-    dispatch(fetchCollectionsFailure(err.message));
-  }
-};

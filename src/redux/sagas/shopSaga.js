@@ -4,7 +4,6 @@ import {
   FETCH_COLLECTIONS_SUCCESS,
   FETCH_COLLECTIONS_FAILURE
 } from '../actions/types';
-
 import {
   firestore,
   convertCollectionsSnapshotToMap
