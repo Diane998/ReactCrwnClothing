@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
-import { fetchCollections } from '../redux/actions';
+import { fetchCollectionsStart } from '../redux/actions';
 import ShopPage from '../components/pages/ShopPage';
 
-const ShopPageContainer = connect(null, { fetchCollections })(ShopPage);
+const ShopPageContainer = connect(null, { fetchCollectionsStart })(ShopPage);
 
 export default ShopPageContainer;

@@ -38,15 +38,42 @@ export const removeItem = item => ({
   payload: item
 });
 
-export const fetchCollections = () => async dispatch => {
+// export const fetchCollections = () => async dispatch => {
+//   const collectionRef = firestore.collection('collections');
+//   dispatch({ type: FETCH_COLLECTIONS_START });
+
+//   try {
+//     const res = await collectionRef.get();
+//     const collectionsMap = convertCollectionsSnapshotToMap(res);
+//     dispatch({ type: FETCH_COLLECTIONS_SUCCESS, payload: collectionsMap });
+//   } catch (err) {
+//     dispatch({ type: FETCH_COLLECTIONS_FAILURE, payload: err });
+//   }
+// };
+
+export const fetchCollectionsStart = () => ({
+  type: FETCH_COLLECTIONS_START
+});
+
+export const fetchCollectionsSuccess = collectionsMap => ({
+  type: FETCH_COLLECTIONS_SUCCESS,
+  payload: collectionsMap
+});
+
+export const fetchCollectionsFailure = errorMessage => ({
+  type: FETCH_COLLECTIONS_FAILURE,
+  payload: errorMessage
+});
+
+export const fetchCollectionsStartAsync = () => async dispatch => {
   const collectionRef = firestore.collection('collections');
-  dispatch({ type: FETCH_COLLECTIONS_START });
+  dispatch(fetchCollectionsStart());
 
   try {
     const res = await collectionRef.get();
     const collectionsMap = convertCollectionsSnapshotToMap(res);
-    dispatch({ type: FETCH_COLLECTIONS_SUCCESS, payload: collectionsMap });
+    dispatch(fetchCollectionsSuccess(collectionsMap));
   } catch (err) {
-    dispatch({ type: FETCH_COLLECTIONS_FAILURE, payload: err });
+    dispatch(fetchCollectionsFailure(err.message));
   }
 };

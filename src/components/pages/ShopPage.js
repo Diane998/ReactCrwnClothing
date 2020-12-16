@@ -6,7 +6,8 @@ import CollectionPageContainer from '../../containers/CollectionsPageContainer';
 
 class ShopPage extends Component {
   componentDidMount() {
-    this.props.fetchCollections();
+    this.props.fetchCollectionsStart();
+    // console.log(this.props);
   }
 
   render() {
