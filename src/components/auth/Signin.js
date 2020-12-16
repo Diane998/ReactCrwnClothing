@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { googleSignInStart, emailSignInStart } from '../../redux/actions/users';
 
 import styled from 'styled-components';
 import InputField from '../fields/InpuField';
@@ -72,4 +70,4 @@ class Signin extends Component {
   }
 }
 
-export default connect(null, { googleSignInStart, emailSignInStart })(Signin);
+export default Signin;

@@ -2,8 +2,9 @@ import {
   TOGGLE_CART_VISIBILITY,
   ADD_ITEM,
   CLEAR_ITEM_FROM_CART,
-  REMOVE_ITEM
-} from '../actions/types';
+  REMOVE_ITEM,
+  CLEAR_CART
+} from '../actions/cartActionTypes';
 import { addItemToCart, removeItemFromCart } from '../cartUtils';
 
 const INITIAL_STATE = { hidden: true, cartItems: [] };
@@ -32,6 +33,8 @@ const cartReducer = (state = INITIAL_STATE, action) => {
         ...state,
         cartItems: removeItemFromCart(state.cartItems, action.payload)
       };
+    case CLEAR_CART:
+      return { ...state, cartItems: [] };
     default:
       return state;
   }

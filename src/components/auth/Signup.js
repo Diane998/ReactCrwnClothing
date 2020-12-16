@@ -19,24 +19,12 @@ class Signup extends Component {
 
   handleSubmit = async e => {
     e.preventDefault();
+    const { signUpStart } = this.props;
     const { displayName, email, password, confirmPassword } = this.state;
-    if (password !== confirmPassword) return;
-    try {
-      const { user } = await auth.createUserWithEmailAndPassword(
-        email,
-        password
-      );
 
-      await createUserProfile(user, { displayName });
-      this.setState({
-        displayName: '',
-        email: '',
-        password: '',
-        confirmPassword: ''
-      });
-    } catch (err) {
-      console.log(err);
-    }
+    if (password !== confirmPassword) return;
+
+    signUpStart({ displayName, email, password });
   };
 
   handleChange = e => {

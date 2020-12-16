@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 
 import { createStructuredSelector } from 'reselect';
 import { selectCartItems } from '../redux/selectors/cartSelectors';
-import { toggleCartVisibility } from '../redux/actions';
+import { toggleCartVisibility } from '../redux/actions/cartActions';
 import CartDropdown from '../components/cart/CartDropdown';
 
 const mapStateToProps = createStructuredSelector({

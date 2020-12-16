@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import Signin from '../auth/Signin';
-import Signup from '../auth/Signup';
+import SigninContainer from '../../containers/SigninContainer';
+import SignupContainer from '../../containers/SignupContainer';
 
 const AuthenticationPageContainer = styled.div`
   width: 850px;
@@ -13,8 +13,8 @@ const AuthenticationPageContainer = styled.div`
 const AuthenticationPage = () => {
   return (
     <AuthenticationPageContainer>
-      <Signin />
-      <Signup />
+      <SigninContainer />
+      <SignupContainer />
     </AuthenticationPageContainer>
   );
 };

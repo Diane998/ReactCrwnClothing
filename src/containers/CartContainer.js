@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { toggleCartVisibility } from '../redux/actions';
+import { toggleCartVisibility } from '../redux/actions/cartActions';
 import { selectCartItemsCount } from '../redux/selectors/cartSelectors';
 import Cart from '../components/cart/Cart';
 
