@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { auth } from '../config/firebase';
 import styled from 'styled-components';
 
 import { ReactComponent as Logo } from '../assets/crown.svg';
@@ -34,7 +33,7 @@ const OptionLink = styled(Link)`
   cursor: pointer;
 `;
 
-const Header = ({ currentUser, hidden }) => (
+const Header = ({ currentUser, hidden, signOutStart }) => (
   <HeaderContainer>
     <LinkLogo to="/">
       <Logo />
@@ -43,7 +42,7 @@ const Header = ({ currentUser, hidden }) => (
       <OptionLink to="/shop">SHOP</OptionLink>
       <OptionLink to="/contact">CONTACT</OptionLink>
       {currentUser ? (
-        <OptionLink as="div" onClick={() => auth.signOut()}>
+        <OptionLink as="div" onClick={signOutStart}>
           SIGN OUT
         </OptionLink>
       ) : (
