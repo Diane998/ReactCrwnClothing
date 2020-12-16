@@ -56,25 +56,13 @@ export const convertCollectionsSnapshotToMap = collection => {
   }, {});
 };
 
-// export const addCollectionAndDocuments = async (collectionKey, objectToAdd) => {
-//   const collectionRef = firestore.collection(collectionKey);
-
-//   const batch = firestore.batch();
-//   objectToAdd.forEach(obj => {
-//     const newDocRef = collectionRef.doc();
-//     batch.set(newDocRef, obj);
-//   });
-
-//   return await batch.commit();
-// };
-
 firebase.initializeApp(firebaseConfig);
 
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 
-const provider = new firebase.auth.GoogleAuthProvider();
-provider.setCustomParameters({ prompt: 'select_account' });
-export const signInWithGoogle = () => auth.signInWithPopup(provider);
+export const googleProvider = new firebase.auth.GoogleAuthProvider();
+googleProvider.setCustomParameters({ prompt: 'select_account' });
+export const signInWithGoogle = () => auth.signInWithPopup(googleProvider);
 
 export default firebase;

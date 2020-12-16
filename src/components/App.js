@@ -1,33 +1,29 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 
-import AuthenticationPage from './pages/AuthenticationPage';
-import { auth, createUserProfile } from '../config/firebase';
-
 import './App.css';
+import AuthenticationPage from './pages/AuthenticationPage';
 import HomePage from './pages/HomePage';
 import ShopPageContainer from '../containers/ShopPageContainer';
 import HeaderContainer from '../containers/HeaderContainer';
 import CheckoutPageContainer from '../containers/CheckoutPageContainer';
 
 class App extends Component {
+  unsubscribeFromAuth = null;
+
   componentDidMount() {
-    const { setCurrentUser } = this.props;
-
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
-      if (userAuth) {
-        const userRef = await createUserProfile(userAuth);
-
-        userRef.onSnapshot(snapshot => {
-          setCurrentUser({
-            id: snapshot.id,
-            ...snapshot.data()
-          });
-        });
-      }
-
-      setCurrentUser(null);
-    });
+    // this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+    //   if (userAuth) {
+    //     const userRef = await createUserProfile(userAuth);
+    //     userRef.onSnapshot(snapshot => {
+    //       setCurrentUser({
+    //         id: snapshot.id,
+    //         ...snapshot.data()
+    //       });
+    //     });
+    //   }
+    //   setCurrentUser(null);
+    // });
   }
 
   componentWillUnmount() {
