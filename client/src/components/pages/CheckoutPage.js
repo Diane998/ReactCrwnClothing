@@ -65,7 +65,7 @@ const CheckoutPage = ({ cartItems, total }) => (
       <CheckoutItemContainer key={cartItem.id} cartItem={cartItem} />
     ))}
 
-    <Total>TOTAL: {total}</Total>
+    <Total>TOTAL: ${total}</Total>
     <Warning>
       *Please use the following credit card for payments*
       <br />
