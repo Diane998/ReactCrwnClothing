@@ -8,6 +8,11 @@ const SigninContainer = styled.div`
   width: 380px;
   display: flex;
   flex-direction: column;
+
+  @media screen and (max-width: 1240px) {
+    width: 85vw;
+    margin-bottom: 20px;
+  }
 `;
 
 const Title = styled.h2`
@@ -17,6 +22,11 @@ const Title = styled.h2`
 const Buttons = styled.div`
   display: flex;
   justify-content: space-between;
+
+  @media screen and (max-width: 1240px) {
+    justify-content: flex-start;
+    flex-direction: column;
+  }
 `;
 
 const Signin = ({ googleSignInStart, emailSignInStart }) => {

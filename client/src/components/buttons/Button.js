@@ -18,6 +18,10 @@ const ButtonContainer = styled.button`
   display: flex;
   justify-content: center;
   ${getButtonStyles}
+
+  @media screen and (max-width: 1240px) {
+    margin: 5px 0;
+  }
 `;
 
 const BaseButton = css`
