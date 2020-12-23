@@ -11,7 +11,7 @@ const CheackoutPageContainer = styled.div`
   align-items: center;
   margin: 50px auto 0;
 
-  @media screen and (max-width: 1240px) {
+  @media screen and (max-width: 800px) {
     width: 100%;
     margin: 50px auto;
   }
@@ -33,7 +33,7 @@ const HeaderBlock = styled.div`
     width: 8%;
   }
 
-  @media screen and (max-width: 1240px) {
+  @media screen and (max-width: 800px) {
     width: 22%;
 
     &:last-child {
