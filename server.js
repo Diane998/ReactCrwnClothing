@@ -27,13 +27,13 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-app.get('/service-worker.js', (req, res) => {
-  res.sendFile(path.resolve(__dirname, '..', 'build', 'service-worker.js'));
-});
-
 app.listen(port, error => {
   if (error) throw error;
   console.log('Server running on port ' + port);
+});
+
+app.get('/service-worker.js', (req, res) => {
+  res.sendFile(path.resolve(__dirname, '..', 'build', 'service-worker.js'));
 });
 
 app.post('/payment', (req, res) => {
