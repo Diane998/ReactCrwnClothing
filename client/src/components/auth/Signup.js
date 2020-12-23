@@ -8,7 +8,7 @@ const SignupContainer = styled.div`
   flex-direction: column;
   width: 380px;
 
-  @media screen and (max-width: 1240px) {
+  @media screen and (max-width: 800px) {
     width: 85vw;
   }
 `;

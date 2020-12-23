@@ -9,7 +9,7 @@ const SigninContainer = styled.div`
   display: flex;
   flex-direction: column;
 
-  @media screen and (max-width: 1240px) {
+  @media screen and (max-width: 800px) {
     width: 85vw;
     margin-bottom: 20px;
   }
@@ -23,7 +23,7 @@ const Buttons = styled.div`
   display: flex;
   justify-content: space-between;
 
-  @media screen and (max-width: 1240px) {
+  @media screen and (max-width: 800px) {
     justify-content: flex-start;
     flex-direction: column;
   }

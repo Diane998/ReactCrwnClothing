@@ -22,7 +22,7 @@ const CollectionItemContainer = styled.div`
     }
   }
 
-  @media screen and (max-width: 1240px) {
+  @media screen and (max-width: 800px) {
     width: 90%;
     margin: 10px;
 
@@ -45,7 +45,7 @@ const AddButton = styled(Button)`
   top: 255px;
   display: none;
 
-  @media screen and (max-width: 1240px) {
+  @media screen and (max-width: 800px) {
     display: block;
     opacity: 0.9;
     min-width: unset;
@@ -61,7 +61,7 @@ const BackgroundImage = styled.div`
   margin-bottom: 5px;
   background-image: ${({ imageUrl }) => `url(${imageUrl})`};
 
-  @media screen and (max-width: 1240px) {
+  @media screen and (max-width: 800px) {
     width: 80vw;
   }
 `;

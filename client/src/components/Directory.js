@@ -9,7 +9,7 @@ const DirectoryMenuContainer = styled.div`
   flex-wrap: wrap;
   justify-content: space-between;
 
-  @media screen and (max-width: 1240px) {
+  @media screen and (max-width: 800px) {
     width: 100vw;
   }
 `;

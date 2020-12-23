@@ -7,7 +7,7 @@ const CollectionPreviewContainer = styled.div`
   flex-direction: column;
   margin-bottom: 30px;
 
-  @media screen and (max-width: 1240px) {
+  @media screen and (max-width: 800px) {
     align-items: center;
   }
 `;
@@ -25,7 +25,7 @@ const Preview = styled.div`
   display: flex;
   justify-content: space-between;
 
-  @media screen and (max-width: 1240px) {
+  @media screen and (max-width: 800px) {
     width: 90vw;
     overflow-x: scroll;
   }
