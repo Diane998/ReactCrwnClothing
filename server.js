@@ -26,7 +26,7 @@ if (process.env.NODE_ENV === 'production') {
     res.sendFile(path.resolve(__dirname, '..', 'build', 'service-worker.js'));
   });
 
-  app.get('*', function (req, res) {
+  app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
   });
 }
