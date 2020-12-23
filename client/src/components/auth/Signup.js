@@ -76,7 +76,9 @@ const Signup = ({ signUpStart }) => {
           label="Confirm Password"
           required
         />
-        <Button type="submit">SIGN UP</Button>
+        <Button style={{ width: '100%' }} type="submit">
+          SIGN UP
+        </Button>
       </form>
     </SignupContainer>
   );

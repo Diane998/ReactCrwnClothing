@@ -8,14 +8,15 @@ const DirectoryMenuContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+
+  @media screen and (max-width: 1240px) {
+    width: 100vw;
+  }
 `;
 
 const Directory = ({ sections }) => {
-  const renderMenu = arr => {
-    return arr.map(({ id, ...menuItem }) => (
-      <MenuItem key={id} {...menuItem} />
-    ));
-  };
+  const renderMenu = arr =>
+    arr.map(({ id, ...menuItem }) => <MenuItem key={id} {...menuItem} />);
 
   return (
     <DirectoryMenuContainer>{renderMenu(sections)}</DirectoryMenuContainer>

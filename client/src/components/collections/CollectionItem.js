@@ -9,6 +9,7 @@ const CollectionItemContainer = styled.div`
   height: 350px;
   align-items: center;
   position: relative;
+  margin: 0 10px;
 
   &:hover {
     .image {
@@ -22,7 +23,7 @@ const CollectionItemContainer = styled.div`
   }
 
   @media screen and (max-width: 1240px) {
-    width: 80vw;
+    width: 90%;
     margin: 10px;
 
     &:hover {
@@ -59,6 +60,10 @@ const BackgroundImage = styled.div`
   background-position: center;
   margin-bottom: 5px;
   background-image: ${({ imageUrl }) => `url(${imageUrl})`};
+
+  @media screen and (max-width: 1240px) {
+    width: 80vw;
+  }
 `;
 
 const CollectionFooterContainer = styled.div`

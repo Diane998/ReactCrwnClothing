@@ -15,6 +15,10 @@ const CollectionPreviewContainer = styled.div`
 const Title = styled.h1`
   font-size: 28px;
   margin-bottom: 25px;
+
+  &:hover {
+    color: grey;
+  }
 `;
 
 const Preview = styled.div`
@@ -22,9 +26,8 @@ const Preview = styled.div`
   justify-content: space-between;
 
   @media screen and (max-width: 1240px) {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-gap: 15px;
+    width: 90vw;
+    overflow-x: scroll;
   }
 `;
 

@@ -5,6 +5,10 @@ import styled from 'styled-components';
 const CollectionPageContainer = styled.div`
   display: flex;
   flex-direction: column;
+
+  @media screen and (max-width: 1240px) {
+    overflow-x: hidden;
+  }
 `;
 
 const Title = styled.h2`
@@ -19,6 +23,12 @@ const Items = styled.div`
 
   & .collection-item {
     margin-bottom: 30px;
+  }
+
+  @media screen and (max-width: 1240px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 `;
 
