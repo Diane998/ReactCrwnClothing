@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import HeaderContainer from '../containers/HeaderContainer';
 import Spinner from './Spinner';
+import ErrorBoundary from './Errorboundary';
 
 import { createGlobalStyle } from 'styled-components';
 
@@ -45,17 +46,19 @@ const App = ({ checkUserSession, currentUser }) => {
       <div>
         <Switch>
           <Route path="/" exact component={HomePage} />
-          <Suspense fallback={<Spinner />}>
-            <Route path="/shop" component={ShopPageContainer} />
-            <Route
-              path="/authentication"
-              exact
-              render={() =>
-                currentUser ? <Redirect to="/" /> : <AuthenticationPage />
-              }
-            />
-            <Route path="/checkout" exact component={CheckoutPageContainer} />
-          </Suspense>
+          <ErrorBoundary>
+            <Suspense fallback={<Spinner />}>
+              <Route path="/shop" component={ShopPageContainer} />
+              <Route
+                path="/authentication"
+                exact
+                render={() =>
+                  currentUser ? <Redirect to="/" /> : <AuthenticationPage />
+                }
+              />
+              <Route path="/checkout" exact component={CheckoutPageContainer} />
+            </Suspense>
+          </ErrorBoundary>
         </Switch>
       </div>
     </BrowserRouter>
