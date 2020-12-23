@@ -1,11 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, lazy, Suspense } from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 
-import AuthenticationPage from './pages/AuthenticationPage';
 import HomePage from './pages/HomePage';
-import ShopPageContainer from '../containers/ShopPageContainer';
 import HeaderContainer from '../containers/HeaderContainer';
-import CheckoutPageContainer from '../containers/CheckoutPageContainer';
+import Spinner from './Spinner';
 
 import { createGlobalStyle } from 'styled-components';
 
@@ -29,6 +27,12 @@ const GlobalStyles = createGlobalStyle`
   }
 `;
 
+const ShopPageContainer = lazy(() => import('../containers/ShopPageContainer'));
+const AuthenticationPage = lazy(() => import('./pages/AuthenticationPage'));
+const CheckoutPageContainer = lazy(() =>
+  import('../containers/CheckoutPageContainer')
+);
+
 const App = ({ checkUserSession, currentUser }) => {
   useEffect(() => {
     checkUserSession();
@@ -41,15 +45,17 @@ const App = ({ checkUserSession, currentUser }) => {
       <div>
         <Switch>
           <Route path="/" exact component={HomePage} />
-          <Route path="/shop" component={ShopPageContainer} />
-          <Route
-            path="/authentication"
-            exact
-            render={() =>
-              currentUser ? <Redirect to="/" /> : <AuthenticationPage />
-            }
-          />
-          <Route path="/checkout" exact component={CheckoutPageContainer} />
+          <Suspense fallback={<Spinner />}>
+            <Route path="/shop" component={ShopPageContainer} />
+            <Route
+              path="/authentication"
+              exact
+              render={() =>
+                currentUser ? <Redirect to="/" /> : <AuthenticationPage />
+              }
+            />
+            <Route path="/checkout" exact component={CheckoutPageContainer} />
+          </Suspense>
         </Switch>
       </div>
     </BrowserRouter>
