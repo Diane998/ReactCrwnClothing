@@ -14,13 +14,12 @@ const DirectoryMenuContainer = styled.div`
   }
 `;
 
-const Directory = ({ sections }) => {
-  const renderMenu = arr =>
-    arr.map(({ id, ...menuItem }) => <MenuItem key={id} {...menuItem} />);
-
-  return (
-    <DirectoryMenuContainer>{renderMenu(sections)}</DirectoryMenuContainer>
-  );
-};
+const Directory = ({ sections }) => (
+  <DirectoryMenuContainer>
+    {sections.map(({ id, ...menuItem }) => (
+      <MenuItem key={id} {...menuItem} />
+    ))}
+  </DirectoryMenuContainer>
+);
 
 export default Directory;

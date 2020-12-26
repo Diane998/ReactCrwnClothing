@@ -1,5 +1,7 @@
 import React from 'react';
+
 import styled from 'styled-components';
+
 import DirectoryContainer from '../../containers/DirectoryContainer';
 
 const HomePageContainer = styled.div`

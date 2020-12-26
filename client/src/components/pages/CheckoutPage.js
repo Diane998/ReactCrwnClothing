@@ -1,5 +1,7 @@
 import React from 'react';
+
 import styled from 'styled-components';
+
 import StripeCheckoutButton from '../buttons/StripeButton';
 import CheckoutItemContainer from '../../containers/CheckoutItemContainer';
 
