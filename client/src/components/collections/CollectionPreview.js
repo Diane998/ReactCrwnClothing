@@ -1,5 +1,7 @@
 import React from 'react';
+
 import styled from 'styled-components';
+
 import CollectionItemContainer from '../../containers/CollectionItemContainer';
 
 const CollectionPreviewContainer = styled.div`
@@ -15,6 +17,7 @@ const CollectionPreviewContainer = styled.div`
 const Title = styled.h1`
   font-size: 28px;
   margin-bottom: 25px;
+  cursor: pointer;
 
   &:hover {
     color: grey;
@@ -31,10 +34,12 @@ const Preview = styled.div`
   }
 `;
 
-const CollectionPreview = ({ items, title }) => {
+const CollectionPreview = ({ items, title, history, match, routeName }) => {
   return (
     <CollectionPreviewContainer>
-      <Title>{title.toUpperCase()}</Title>
+      <Title onClick={() => history.push(`${match.path}/${routeName}`)}>
+        {title.toUpperCase()}
+      </Title>
       <Preview>
         {items
           .filter((item, i) => i < 4)

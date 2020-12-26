@@ -3,7 +3,8 @@ import {
   ADD_ITEM,
   CLEAR_ITEM_FROM_CART,
   REMOVE_ITEM,
-  CLEAR_CART
+  CLEAR_CART,
+  SET_CART_FROM_FIREBASE
 } from '../actions/cartActionTypes';
 import { addItemToCart, removeItemFromCart } from '../cartUtils';
 
@@ -35,6 +36,11 @@ const cartReducer = (state = INITIAL_STATE, action) => {
       };
     case CLEAR_CART:
       return { ...state, cartItems: [] };
+    case SET_CART_FROM_FIREBASE:
+      return {
+        ...state,
+        cartItems: action.payload
+      };
     default:
       return state;
   }

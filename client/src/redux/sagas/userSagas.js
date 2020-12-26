@@ -10,7 +10,7 @@ import {
 import {
   auth,
   googleProvider,
-  createUserProfile,
+  createUserProfileDocument,
   getCurrentUser
 } from '../../config/firebase';
 import {
@@ -23,7 +23,11 @@ import {
 
 export function* getSnapshotFromUserAuth(userAuth, additionalData) {
   try {
-    const userRef = yield call(createUserProfile, userAuth, additionalData);
+    const userRef = yield call(
+      createUserProfileDocument,
+      userAuth,
+      additionalData
+    );
     const userSnapshot = yield userRef.get();
     yield put(signInSuccess({ id: userSnapshot.id, ...userSnapshot.data() }));
   } catch (err) {
@@ -84,7 +88,7 @@ export function* isUserAuthenticated() {
     if (!userAuth) return;
 
     try {
-      const userRef = yield call(createUserProfile, userAuth);
+      const userRef = yield call(createUserProfileDocument, userAuth);
       const userSnapshot = yield userRef.get();
       yield put(signInSuccess({ id: userSnapshot.id, ...userSnapshot.data() }));
     } catch (err) {

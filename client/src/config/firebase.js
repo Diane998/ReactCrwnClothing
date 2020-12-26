@@ -12,7 +12,9 @@ const firebaseConfig = {
   measurementId: 'G-TLVL3VTMEW'
 };
 
-export const createUserProfile = async (userAuth, additionalData) => {
+firebase.initializeApp(firebaseConfig);
+
+export const createUserProfileDocument = async (userAuth, additionalData) => {
   if (!userAuth) return;
 
   const userRef = firestore.doc(`users/${userAuth.uid}`);
@@ -38,6 +40,34 @@ export const createUserProfile = async (userAuth, additionalData) => {
   return userRef;
 };
 
+export const getUserCartRef = async userId => {
+  const cartsRef = firestore.collection('carts').where('userId', '==', userId);
+  const snapShot = await cartsRef.get();
+
+  if (snapShot.empty) {
+    const cartDocRef = firestore.collection('carts').doc();
+    await cartDocRef.set({ userId, cartItems: [] });
+    return cartDocRef;
+  } else {
+    return snapShot.docs[0].ref;
+  }
+};
+
+export const addCollectionAndDocuments = async (
+  collectionKey,
+  objectsToAdd
+) => {
+  const collectionRef = firestore.collection(collectionKey);
+
+  const batch = firestore.batch();
+  objectsToAdd.forEach(obj => {
+    const newDocRef = collectionRef.doc();
+    batch.set(newDocRef, obj);
+  });
+
+  return await batch.commit();
+};
+
 export const convertCollectionsSnapshotToMap = collection => {
   const transformedCollection = collection.docs.map(doc => {
     const { title, items } = doc.data();
@@ -55,8 +85,6 @@ export const convertCollectionsSnapshotToMap = collection => {
     return acc;
   }, {});
 };
-
-firebase.initializeApp(firebaseConfig);
 
 export const getCurrentUser = () =>
   new Promise((reseolve, reject) => {
